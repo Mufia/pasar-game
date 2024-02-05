@@ -88,7 +88,7 @@ function Register() {
           <input
             name="phone"
             type="text"
-            placeholder="+62xxxxxxxxxxx"
+            placeholder="62xxxxxxxx   (Gunakan kode negara tanpa +)"
             onChange={handleChange}
           />
         </div>

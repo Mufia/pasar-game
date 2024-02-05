@@ -22,6 +22,8 @@ function Navbar() {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+  const admin = currentUser?.isAdmin
+
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -44,6 +46,13 @@ function Navbar() {
           <span className="dot">.</span>
         </div>
         <div className="links">
+          {currentUser?.isAdmin && (
+            <>
+            <Link className="link" to="/admin/user">User</Link>
+            <Link className="link" to="/admin/post">Post</Link>
+            <Link className="link" to="/admin/order">Order</Link>
+            </>
+          )}
           <Link className="link" to="/middleman">Middle Man</Link>
           <Link className="link" to="/cara">Tata Cara</Link>
           {currentUser ? (
@@ -62,11 +71,11 @@ function Navbar() {
                       </Link>
                     </>
                   )}
-                  <Link className="link" to="/messages">
-                    Pesan
-                  </Link>
                   <Link className="link" onClick={handleLogout}>
                     Logout
+                  </Link>
+                  <Link className="link" to="/profile">
+                        Profile
                   </Link>
                 </div>
               )}

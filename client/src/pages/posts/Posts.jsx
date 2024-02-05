@@ -27,7 +27,10 @@ function Posts() {
 
   console.log(data);
 
-  const empty = Array.length === 0 ;
+  const number = data?.length;
+  console.log(number);
+
+  const empty = number === 0 ;
 
   const reSort = (type) => {
     setSort(type);
@@ -58,6 +61,8 @@ function Posts() {
             ? "loading"
             : error
             ? "Something went wrong!"
+            : empty
+            ? <h2>Belum ada iklan untuk game ini</h2>
             : data?.map((post) => <PostCard key={post._id} item={post} />)
             }
         </div>

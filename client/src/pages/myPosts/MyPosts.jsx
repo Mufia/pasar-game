@@ -40,7 +40,7 @@ function MyPosts() {
       ) : (
         <div className="container">
           <div className="title">
-            <h1>Iklan</h1>
+            <h1>Iklan Saya</h1>
             {currentUser.isSeller && (
               <Link to="/add">
                 <button>Tambah iklan</button>
@@ -68,6 +68,7 @@ function MyPosts() {
                     alt=""
                     onClick={() => handleDelete(post._id)}
                   />
+                  <button>Terjual</button>
                 </td>
               </tr>
             ))}

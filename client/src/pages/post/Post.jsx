@@ -11,7 +11,6 @@ function Post() {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  console.log(currentUser);
 
   const { id } = useParams();
 
@@ -22,8 +21,8 @@ function Post() {
         return res.data;
       }),
   });
-  console.log(data)
 
+  const isSold = data?.isSold;
 
   const userId = data?.userId;
 
@@ -41,7 +40,7 @@ function Post() {
   });
   
 
-  const message = (`Halo, saya tertarik dengan akun  yang anda tawarkan di Pasar Game`);
+  const message = (`Halo, saya tertarik dengan akun ${data?.title} yang anda tawarkan di Pasar Game`);
 
   return (
     <div className="post">
@@ -52,7 +51,10 @@ function Post() {
       ) : (
         <div className="container">
           <div className="left">
-            <h1>{data.title}</h1>
+            <div className="title">
+              <h1>{data.title}</h1>
+              {isSold ? <h1 className="sold">[Terjual]</h1> : " " }
+            </div>
             {isLoadingUser ? (
               "loading"
             ) : errorUser ? (
@@ -65,16 +67,6 @@ function Post() {
                   alt=""
                 />
                 <span>{dataUser.username}</span>
-                {!isNaN(data.totalStars / data.starNumber) && (
-                  <div className="stars">
-                    {Array(Math.round(data.totalStars / data.starNumber))
-                      .fill()
-                      .map((item, i) => (
-                        <img src="/img/star.png" alt="" key={i} />
-                      ))}
-                    <span>{Math.round(data.totalStars / data.starNumber)}</span>
-                  </div>
-                )}
               </div>
             )}
             <Slider slidesToShow={1} arrowsScroll={1} className="slider">
@@ -101,7 +93,11 @@ function Post() {
                   <div className="info">
                     <span>{dataUser.username}</span>
                     {
-                      !currentUser? <p>Silahkan login untuk menghubungi penjual</p> : currentUser.isSeller? <p>Silahkan login dengan akun user untuk menghubugni penjual</p> : <WaButton phoneNumber={dataUser.phone} message={message}/>   
+                      !currentUser? 
+                      <p>Silahkan login untuk menghubungi penjual</p> 
+                      : currentUser.isSeller? 
+                      <p>Silahkan login dengan akun user untuk menghubugni penjual</p> 
+                      : <WaButton phoneNumber={dataUser.phone} message={message}/>   
                     }
                   </div>
                 </div>

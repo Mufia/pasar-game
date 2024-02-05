@@ -24,12 +24,12 @@ function Login() {
   return (
     <div className="login">
       <form onSubmit={handleSubmit}>
-        <h1>Sign in</h1>
+        <h1>Log in</h1>
         <label htmlFor="">Username</label>
         <input
           name="username"
           type="text"
-          placeholder="johndoe"
+          placeholder=""
           onChange={(e) => setUsername(e.target.value)}
         />
 

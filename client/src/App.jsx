@@ -10,6 +10,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Add from "./pages/add/Add";
 import MiddleMan from "./pages/middleMan/MiddleMan";
+import Admin from "./pages/admin/Admin";
 //import Orders from "./pages/orders/Orders";
 //import Messages from "./pages/messages/Messages";
 //import Message from "./pages/message/Message";
@@ -19,6 +20,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import Profile from "./pages/profile/Profile";
 //import Pay from "./pages/pay/Pay";
 //import Success from "./pages/success/Success";
 function App() {
@@ -76,6 +78,14 @@ function App() {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/admin",
+          element: <Admin/>,
+        },
+        {
+          path: "/profile",
+          element: <Profile/>,
         },
       ],
     },

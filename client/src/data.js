@@ -41,7 +41,7 @@ export const cards = [
   },
   {
     id: 6,
-    title: "Dragon Nest 2 Evoluton",
+    title: "Dragon Nest",
     cat : "dn2e",
     desc: " ",
     icon: "https://img.utdstc.com/icon/bad/b2f/badb2f494f4554330ea17eb21a37a6ca67669e5003f27168734a23617023768c:200",
@@ -65,3 +65,26 @@ export const cards = [
   },
 ];
 
+export const midman = [
+  {
+    id : 1,
+    name : "Middleman 1",
+    whatsapp :"6282160320553",
+    discord :"discordapp.com/user/504156433101750272",
+    facebook : "https://www.facebook.com/fikrimarpaung34/"
+  },
+  {
+    id : 2,
+    name : "Middleman 2",
+    whatsapp :"6282160320553",
+    discord :"discordapp.com/user/504156433101750272",
+    facebook : "https://www.facebook.com/fikrimarpaung34/"
+  },
+  {
+    id : 3,
+    name : "Middleman 3",
+    whatsapp :"6282160320553",
+    discord :"discordapp.com/user/504156433101750272",
+    facebook : "https://www.facebook.com/fikrimarpaung34/"
+  },
+];

@@ -45,6 +45,18 @@
             width: 20px;
             cursor: pointer;
           }
+          button {
+            background-color: #100dd4;
+            color: white;
+            font-weight: 500;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-left: 10px;
+            height: 30px;
+          }
 
         }
         &:nth-child(even) {

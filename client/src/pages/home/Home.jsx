@@ -13,17 +13,16 @@ import PostCard from "../../components/postCard/PostCard";
 
 function Home() {
 
-  const { isLoading, error, data, refetch } = useQuery({
+/*  const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["posts"],
     queryFn: () =>
       newRequest.get("/posts")
         .then((res) => {
           return res.data;
         }),
-  });
+  });*/
   
-  console.log(data);
-
+  
   return (
     <div className="home">
       <Featured />

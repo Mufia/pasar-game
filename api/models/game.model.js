@@ -18,6 +18,10 @@ const GameSchema = new Schema (
     icon: {
       type: String,
       required: true,
+    },
+    isPopular: {
+      type: Boolean,
+      default:false
     },    
   },
   {

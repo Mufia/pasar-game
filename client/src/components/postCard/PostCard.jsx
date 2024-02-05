@@ -32,7 +32,7 @@ const PostCard = ({ item }) => {
         </div>
         <hr />
         <div className="detail">
-          <img src="./img/heart.png" alt="" />
+
           <div className="price">
             <h2><FormatRupiah value={item.price} /></h2>
           </div>

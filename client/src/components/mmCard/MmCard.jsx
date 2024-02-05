@@ -1,52 +1,25 @@
-import React from "react";
-import "./PostCard.scss";
+import React from 'react'
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import newRequest from "../../utils/newRequest";
+import WaIcon from '../waIcon/WaIcon';
+import "./Mmcard.scss"
+import WaButton from '../waButton/WaButton';
 
-const PostCard = ({ item }) => {
-  const { isLoading, error, data } = useQuery({
-    queryKey: [item.userId],
-    queryFn: () =>
-      newRequest.get(`/users/${item.userId}`).then((res) => {
-        return res.data;
-      }),
-  });
+function MmCard ({midman}) {
+
+
+  const message = "Halo, Saya ingin menggunakan Jasa MIddleman Untuk bertransaksi di Pasar Game"
+
   return (
-    <Link to={`/post/${item._id}`} className="link">
-      <div className="postCard">
-        <img src={item.cover} alt="" />
-        <div className="info">
-          {isLoading ? (
-            "loading"
-          ) : error ? (
-            "Something went wrong!"
-          ) : (
-            <div className="user">
-              <img src={data.img || "/img/noavatar.jpg"} alt="" />
-              <span>{data.username}</span>
-            </div>
-          )}
-          <p>{item.desc}</p>
-          <div className="star">
-            <img src="./img/star.png" alt="" />
-            <span>
-              {!isNaN(item.totalStars / item.starNumber) &&
-                Math.round(item.totalStars / item.starNumber)}
-            </span>
-          </div>
-        </div>
-        <hr />
-        <div className="detail">
-          <img src="./img/heart.png" alt="" />
-          <div className="price">
-            <span>Harga</span>
-            <h2>Rp. {item.price}</h2>
-          </div>
+    <div className='MmCard'>
+      <h2>{midman.name}</h2>
+      <img src="/img/noavatar.jpg" alt="mm" />
+      <div className="info">
+        <div className="Whatsapp">
+          <WaButton phoneNumber={midman.whatsapp} message={message}/>
         </div>
       </div>
-    </Link>
-  );
-};
+    </div>
+  )
+}
 
-export default PostCard;
+export default MmCard;

@@ -16,6 +16,10 @@ const ConversationSchema = new Schema(
       type: String,
       required: true,
     },
+    adminId: {
+      type: String,
+      required: true,
+    },
     readBySeller: {
       type: Boolean,
       required: true,
