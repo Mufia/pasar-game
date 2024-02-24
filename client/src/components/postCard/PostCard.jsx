@@ -13,6 +13,7 @@ const PostCard = ({ item }) => {
         return res.data;
       }),
   });
+
   return (
     <Link to={`/post/${item._id}`} className="link">
       <div className="postCard">
@@ -28,7 +29,7 @@ const PostCard = ({ item }) => {
               <span>{data.username}</span>
             </div>
           )}
-          <p>{item.title}</p>
+          <h4>{item.title}</h4>
         </div>
         <hr />
         <div className="detail">
@@ -36,6 +37,8 @@ const PostCard = ({ item }) => {
           <div className="price">
             <h2><FormatRupiah value={item.price} /></h2>
           </div>
+          {item.isSold? <h3 className="sold">[Terjual]</h3>
+            : "" }
         </div>
       </div>
     </Link>

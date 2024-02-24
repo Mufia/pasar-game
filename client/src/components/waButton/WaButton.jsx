@@ -8,7 +8,7 @@ const WaButton = ({ phoneNumber, message, }) => {
 
   return (
     
-    <button onClick={handleClick}>Hubungi</button>
+    <button onClick={handleClick}>WhatsApp</button>
   );
 };
 

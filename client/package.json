@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mui/material": "^5.15.10",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@tanstack/react-query": "^4.29.25",
     "axios": "^1.4.0",
     "infinite-react-carousel": "^1.2.11",
@@ -16,7 +19,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.2",
-    "sass": "^1.63.6"
+    "sass": "^1.63.6",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

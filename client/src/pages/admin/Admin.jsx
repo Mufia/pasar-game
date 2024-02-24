@@ -2,6 +2,7 @@ import React from 'react';
 import "./Admin.scss";
 import UserTable from '../../components/userTable/UserTable';
 import PostTable from '../../components/postTable/PostTable';
+import GameTable from '../../components/gameTable/GameTable';
 
 
 
@@ -32,10 +33,12 @@ const admin = currentUser?.isAdmin
             <div className="right">
                 <UserTable/>
                 <PostTable/>
+                <GameTable/>        
             </div>
         </div>
         </>
         )}
+
     </div>
   )
 }

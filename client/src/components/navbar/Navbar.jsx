@@ -49,12 +49,12 @@ function Navbar() {
           {currentUser?.isAdmin && (
             <>
             <Link className="link" to="/admin/user">User</Link>
-            <Link className="link" to="/admin/post">Post</Link>
-            <Link className="link" to="/admin/order">Order</Link>
+            <Link className="link" to="/admin/posts">Post</Link>
+            <Link className="link" to="/admin/orders">Order</Link>
             </>
           )}
-          <Link className="link" to="/middleman">Middle Man</Link>
-          <Link className="link" to="/cara">Tata Cara</Link>
+          {/*<Link className="link" to="/middleman">Middle Man</Link>
+          <Link className="link" to="/cara">Tata Cara</Link>*/}
           {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
               <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />
@@ -74,9 +74,16 @@ function Navbar() {
                   <Link className="link" onClick={handleLogout}>
                     Logout
                   </Link>
-                  <Link className="link" to="/profile">
-                        Profile
+                  <Link className="link" to="/chat">
+                     Chat
                   </Link>
+                  {
+                    currentUser.isAdmin ? ""
+                    : <Link className="link" to="/orders">
+                        Orders
+                      </Link>
+                  }
+
                 </div>
               )}
             </div>

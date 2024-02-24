@@ -4,8 +4,9 @@ const { Schema } = mongoose;
 const PostSchema = new Schema(
   {
     userId: {
-      type: String,
-      required: true,
+      type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
+        required: true
     },
     title: {
       type: String,
@@ -29,10 +30,6 @@ const PostSchema = new Schema(
     },
     images: {
       type: [String],
-      required: true,
-    },
-    userId: {
-      type: String,
       required: true,
     },
     isSold: {

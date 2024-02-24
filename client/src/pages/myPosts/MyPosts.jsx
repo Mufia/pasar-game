@@ -18,6 +18,8 @@ function MyPosts() {
       }),
   });
 
+  console.log(data)
+
   const mutation = useMutation({
     mutationFn: (id) => {
       return newRequest.delete(`/posts/${id}`);
@@ -30,6 +32,19 @@ function MyPosts() {
   const handleDelete = (id) => {
     mutation.mutate(id);
   };
+
+  const soldMutation = useMutation({
+    mutationFn: (id) => {
+      return newRequest.put(`/posts/sold/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["myPosts"]);
+    },
+  });
+
+ const handleSold = (id) => {
+    soldMutation.mutate(id);
+  }
 
   return (
     <div className="myPosts">
@@ -68,7 +83,11 @@ function MyPosts() {
                     alt=""
                     onClick={() => handleDelete(post._id)}
                   />
-                  <button>Terjual</button>
+                  {
+                    post?.isSold ? 
+                    <span>Terjual</span> :
+                    <button onClick={() => handleSold(post._id)}>Terjual</button>
+                  }
                 </td>
               </tr>
             ))}

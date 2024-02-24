@@ -1,20 +1,25 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Orders.scss";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
 const Orders = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+  const isSeller = currentUser?.isSeller;
+  
+  const queryClient = useQueryClient();
+  
   const navigate = useNavigate();
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
       newRequest.get(`/orders`).then((res) => {
         return res.data;
       }),
   });
+   console.log(data)
 
   const handleContact = async (order) => {
     const sellerId = order.sellerId;
@@ -33,6 +38,35 @@ const Orders = () => {
       }
     }
   };
+
+  const confirmMutation = useMutation({
+    mutationFn: (id) => {
+      return newRequest.put(`/orders/confirm/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["order"]);
+    },
+  });
+
+  const handleConfirm = (id) => {
+    confirmMutation.mutate(id);
+    window.location.reload();
+  };
+
+  const completeMutation = useMutation({
+    mutationFn: (id) => {
+      return newRequest.put(`/orders/complete/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["order"]);
+    },
+  });
+
+  const handleComplete = (id) => {
+    completeMutation.mutate(id);
+    window.location.reload();
+  };
+
   return (
     <div className="orders">
       {isLoading ? (
@@ -45,12 +79,11 @@ const Orders = () => {
             <h1>Orders</h1>
           </div>
           <table>
-            <tr>
               <th>Image</th>
               <th>Title</th>
               <th>Price</th>
               <th>Contact</th>
-            </tr>
+              <th>Status</th>
             {data.map((order) => (
               <tr key={order._id}>
                 <td>
@@ -65,6 +98,30 @@ const Orders = () => {
                     alt=""
                     onClick={() => handleContact(order)}
                   />
+                </td>
+                <td>
+                {!currentUser.isSeller && (
+                    <>
+                      {
+                        order.isCompleted?
+                        <span>Pesanan Selesai</span>
+                        : order.onProcces? 
+                        <button onClick={() => handleComplete(order._id)} >Selesaikan Pesanan</button>
+                        : <span>Menunggu Konfirmasi</span>
+                      }
+                    </>
+                  )}
+                  {currentUser.isSeller && (
+                    <>
+                      {
+                        order.isCompleted?
+                        <span>Pesanan Selesai</span>
+                        : order.onProcces? 
+                        <span>Sedang Proses</span>
+                        : <button onClick={() => handleConfirm(order._id)}>Konfirmasi</button>
+                      }
+                    </>
+                  )}
                 </td>
               </tr>
             ))}

@@ -52,7 +52,7 @@ export const cards = [
     title: "Mobile Legends",
     cat : "mlbb",
     desc: " ",
-    icon: "https://play-lh.googleusercontent.com/UELcKakJhwKhdDJIwpdvd1RjE3ClRXiG0nhChs69fBv-nn5ZkgSp2EkkRTnJYFtYoZyu=w240-h480-rw",
+    icon: "https://th.bing.com/th/id/OIP.h24iLRjLABDXNNqg5yVIdQHaHa?rs=1&pid=ImgDetMain",
     img: "https://rakyatbenteng.disway.id/upload/c487f0a0785ebaf71fccb9246457a5a4.jpg",
   },
   {

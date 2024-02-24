@@ -11,19 +11,16 @@ function Post() {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-
   const { id } = useParams();
 
-  const { isLoading, error, data, pesan} = useQuery({
+  const { isLoading, error, data} = useQuery({
     queryKey: ["post"],
     queryFn: () =>
       newRequest.get(`/posts/single/${id}`).then((res) => {
         return res.data;
       }),
   });
-
   const isSold = data?.isSold;
-
   const userId = data?.userId;
 
   const {
@@ -38,9 +35,29 @@ function Post() {
       }),
     enabled: !!userId,
   });
-  
+
+
+
 
   const message = (`Halo, saya tertarik dengan akun ${data?.title} yang anda tawarkan di Pasar Game`);
+
+  const handleContact = async (order) => {
+    const sellerId = dataUser._id;
+    const buyerId = currentUser._id;
+    const id = sellerId + buyerId;
+
+    try {
+      const res = await newRequest.get(`/conversations/single/${id}`);
+      navigate(`/message/${res.data.id}`);
+    } catch (err) {
+      if (err.response.status === 404) {
+        const res = await newRequest.post(`/conversations/`, {
+          to: currentUser.seller ? buyerId : sellerId,
+        });
+        navigate(`/message/${res.data.id}`);
+      }
+    }
+  };
 
   return (
     <div className="post">
@@ -55,7 +72,7 @@ function Post() {
               <h1>{data.title}</h1>
               {isSold ? <h1 className="sold">[Terjual]</h1> : " " }
             </div>
-            {isLoadingUser ? (
+            {/*isLoadingUser ? (
               "loading"
             ) : errorUser ? (
               "Something went wrong!"
@@ -68,7 +85,7 @@ function Post() {
                 />
                 <span>{dataUser.username}</span>
               </div>
-            )}
+            )*/}
             <Slider slidesToShow={1} arrowsScroll={1} className="slider">
               {data.images.map((img) => (
                 <img key={img} src={img} alt="" />
@@ -97,8 +114,17 @@ function Post() {
                       <p>Silahkan login untuk menghubungi penjual</p> 
                       : currentUser.isSeller? 
                       <p>Silahkan login dengan akun user untuk menghubugni penjual</p> 
-                      : <WaButton phoneNumber={dataUser.phone} message={message}/>   
+                      : <div className="button">
+                        <WaButton phoneNumber={dataUser.phone} message={message}/>
+                        <button>Chat</button>
+                        {
+                          isSold ? "Akun ini telah terjual" :
+                          <button>Pesan Sekarang</button>
+                        }
+                        </div>
+                         
                     }
+                    
                   </div>
                 </div>
               </div>

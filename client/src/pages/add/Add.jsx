@@ -11,6 +11,9 @@ const Add = () => {
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
 
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  console.log(currentUser.username)
+
   const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
 
   const handleChange = (e) => {
@@ -62,7 +65,7 @@ const Add = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate(state);
-    navigate("/myposts")
+    //navigate("/myposts")
   };
 
 

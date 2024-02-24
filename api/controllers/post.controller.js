@@ -1,9 +1,11 @@
 import Post from "../models/post.model.js";
 import createError from "../utils/createError.js";
+import User from "../models/user.model.js"
 
 export const createPost = async (req, res, next) => {
   if (!req.isSeller)
     return next(createError(403, "Only sellers can create a Post!"));
+  
 
   const newPost = new Post({
     userId: req.userId,
@@ -57,4 +59,29 @@ export const getPosts = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+export const getAllPosts = async (req, res, next) => {
+  const posts = await Post.find()
+  
+  res.status(200).send(posts);
+}
+
+
+export const soldPost = async (req, res, next) => {
+  
+  try {
+    if (req.isSeller !== true ) {
+      return next(createError(403, "Hanya Seller yang bisa konfirmasi order"));
+    }
+    const soldPost =  await Post.findByIdAndUpdate(req.params.id,
+      { isSold : true }, {new : true}
+      )
+      res.status(200).send("Sold");
+    
+  } catch (err) {
+    next(err)
+    
+  }
+  
 };

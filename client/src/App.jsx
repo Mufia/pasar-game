@@ -11,7 +11,11 @@ import Register from "./pages/register/Register";
 import Add from "./pages/add/Add";
 import MiddleMan from "./pages/middleMan/MiddleMan";
 import Admin from "./pages/admin/Admin";
-//import Orders from "./pages/orders/Orders";
+import Orders from "./pages/orders/Orders";
+import User from "./pages/admin/user/User";
+import AdminOrders from "./pages/admin/orders/AdminOrders";
+import AdminPosts from "./pages/admin/posts/AdminPosts";
+import Chat from "./pages/Chat/Chat";
 //import Messages from "./pages/messages/Messages";
 //import Message from "./pages/message/Message";
 import MyPosts from "./pages/myPosts/MyPosts";
@@ -21,8 +25,9 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import Profile from "./pages/profile/Profile";
-//import Pay from "./pages/pay/Pay";
-//import Success from "./pages/success/Success";
+
+
+
 function App() {
   const queryClient = new QueryClient();
 
@@ -37,6 +42,7 @@ function App() {
       </div>
     );
   };
+  
 
   const router = createBrowserRouter([
     {
@@ -80,13 +86,30 @@ function App() {
           element: <Login />,
         },
         {
+          path: "/orders",
+          element: <Orders/>,
+        },
+        {
           path: "/admin",
           element: <Admin/>,
         },
         {
-          path: "/profile",
-          element: <Profile/>,
+          path: "/admin/orders",
+          element: <AdminOrders/>,
         },
+        {
+          path: "/admin/posts",
+          element: <AdminPosts/>,
+        },
+        {
+          path: "/admin/user",
+          element: <User/>,
+        },
+        {
+          path: "/chat",
+          element: <Chat/>,
+        },
+        
       ],
     },
   ]);

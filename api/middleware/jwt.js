@@ -11,6 +11,7 @@ export const verifyToken = (req, res, next) => {
     req.userId = payload.id;
     req.isSeller = payload.isSeller;
     req.isAdmin = payload.isAdmin;
+    req.username = payload.userame;
     next()
   });
 };

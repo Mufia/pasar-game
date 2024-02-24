@@ -31,6 +31,10 @@ const OrderSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    onProcces: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

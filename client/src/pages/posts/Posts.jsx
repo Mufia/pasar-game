@@ -28,7 +28,6 @@ function Posts() {
   console.log(data);
 
   const number = data?.length;
-  console.log(number);
 
   const empty = number === 0 ;
 

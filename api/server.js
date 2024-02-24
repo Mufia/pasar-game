@@ -5,8 +5,9 @@ import userRoute from "./routes/user.route.js";
 import postRoute from "./routes/post.route.js";
 import gameRoute from "./routes/game.route.js";
 import orderRoute from "./routes/order.route.js";
+import chatRoute from "./routes/chat.route.js";
 //import conversationRoute from "./routes/conversation.route.js";
-//import messageRoute from "./routes/message.route.js";
+import messageRoute from "./routes/message.route.js";
 //import reviewRoute from "./routes/review.route.js";
 import authRoute from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
@@ -34,8 +35,9 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/game", gameRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/chat", chatRoute);
 //app.use("/api/conversations", conversationRoute);
-//app.use("/api/messages", messageRoute);
+app.use("/api/messages", messageRoute);
 //app.use("/api/reviews", reviewRoute);
 
 app.use((err, req, res, next) => {

@@ -1,6 +1,7 @@
 import createError from "../utils/createError.js";
 import Order from "../models/order.model.js";
-import Post from "../models/post.model.js"
+import Post from "../models/post.model.js";
+import User from "../models/user.model.js";
 //import Stripe from "stripe";
 
 
@@ -29,13 +30,10 @@ export const createOrder = async (req, res, next) => {
 
 
 
-
-
 export const getOrders = async (req, res, next) => {
   try {
     const orders = await Order.find({
       ...(req.isSeller ? { sellerId: req.userId } : { buyerId: req.userId }),
-      isCompleted: true,
     });
 
     res.status(200).send(orders);
@@ -43,13 +41,48 @@ export const getOrders = async (req, res, next) => {
     next(err);
   }
 };
-export const confirm = async (req, res, next) => {
-  try {
-    const orders = await Order.findOneAndUpdate(
-    );
 
-    res.status(200).send("Order has been confirmed.");
+export const getAllOrders = async (req, res, next) => {
+  const orders = await Order.find();
+  
+  res.status(200).send(orders);
+}
+
+export const confirmOrder = async (req, res, next) => {
+  
+  try {
+    if (req.isSeller !== true ) {
+      return next(createError(403, "Hanya Seller yang bisa konfirmasi order"));
+    }
+    const confirmOrder =  await Order.findByIdAndUpdate(req.params.id,
+      { onProcces : true }, {new : true}
+      )
+      res.status(200).send("order updated");
+    
   } catch (err) {
-    next(err);
+    next(err)
+    
   }
+  
 };
+
+export const completeOrder = async (req, res, next) => {
+  
+  try {
+    if (req.isSeller === true ) {
+      return next(createError(403, "Hanya buyer yang bisa konfirmasi order"));
+    }
+    const confirmOrder =  await Order.findByIdAndUpdate(req.params.id,
+      { onProcces : false , isCompleted : true}, {new : true}
+      )
+      res.status(200).send("order completed");
+    
+  } catch (err) {
+    next(err)
+    
+  }
+  
+};
+
+
+
