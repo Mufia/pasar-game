@@ -8,7 +8,7 @@ const AdminOrders = () => {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const queryClient = useQueryClient();
-  const navigat = useNavigate();
+  const navigate = useNavigate();
   
   const { isLoading, error, data } = useQuery({
     queryKey: ["orders"],
@@ -22,13 +22,23 @@ const AdminOrders = () => {
 
   const mutation = useMutation ({
     mutationFn: (orderId) => {
-      return newRequest.post(`/chat/${orderId}`);
+      return newRequest.post(`/chat/group/${orderId}`);
     },
     onSucces : () => {
       queryClient.invalidateQueries(["order"])
     }
   });
-
+  
+  const handleGroupchat = async (orderId) => {
+    try {
+      const res = await newRequest.get(`/chat/single/${orderId}`);
+      navigate(`/chat`)
+    } catch (err) {
+      if (err.response.status === 404) {
+        const res = await newRequest.post(`chat/group/${orderId}`)
+      }
+    }
+  }
 
   return (
     <div className='adminOrders'>
@@ -57,7 +67,7 @@ const AdminOrders = () => {
                     order.isCompleted?
                     <span>PesananSelesai</span>
                     : order.onProcces?
-                    <button>Group Chat</button>
+                    <button onClick={() => handleGroupchat(order._id)}>Group Chat</button>
                     : "Menunggu Konfirmasi"
                   }
                 </td>

@@ -4,7 +4,7 @@ export const cards = [
     title: "Genshin Impact",
     cat : "genshin",
     desc: " ",
-    icon: "https://play-lh.googleusercontent.com/vRd2gg6XmC3TRTM5wZZ8qwEc5LMUROh4whycLuiCSPB40tIxDYLT6V0BdCn486XiKQ0=w240-h480-rw",
+    icon: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0f1e5aad-05cf-4342-a2a3-6385559563dc/de8hzqj-45443592-d7d8-4a12-bed7-663747aa5d0c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzBmMWU1YWFkLTA1Y2YtNDM0Mi1hMmEzLTYzODU1NTk1NjNkY1wvZGU4aHpxai00NTQ0MzU5Mi1kN2Q4LTRhMTItYmVkNy02NjM3NDdhYTVkMGMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.yZASIXfhf58g6J0TuMTlLFF7fmyCZf-XDWYoYaqm-kI",
     img:"https://cdn1.epicgames.com/offer/879b0d8776ab46a59a129983ba78f0ce/genshintall_1200x1600-4a5697be3925e8cb1f59725a9830cafc",
   },
   {

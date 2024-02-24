@@ -59,6 +59,10 @@ function Post() {
     }
   };
 
+  const handleOrder = async (post) => {
+
+  }
+
   return (
     <div className="post">
       {isLoading ? (
@@ -110,6 +114,7 @@ function Post() {
                   <div className="info">
                     <span>{dataUser.username}</span>
                     {
+                      isSold ? <h3>Akun ini telah Terjual</h3> :
                       !currentUser? 
                       <p>Silahkan login untuk menghubungi penjual</p> 
                       : currentUser.isSeller? 
@@ -117,10 +122,7 @@ function Post() {
                       : <div className="button">
                         <WaButton phoneNumber={dataUser.phone} message={message}/>
                         <button>Chat</button>
-                        {
-                          isSold ? "Akun ini telah terjual" :
-                          <button>Pesan Sekarang</button>
-                        }
+                        <button>Pesan Sekarang</button>
                         </div>
                          
                     }

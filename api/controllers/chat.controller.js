@@ -83,11 +83,8 @@ export const getChats = async (req, res, next) => {
 export const getChat = async (req, res, next) => {
     try {
         const orderId = req.params.orderId;
-
         const chat = await Chat.findOne({orderId});
-        if (!chat) {
-            return res.status(404).json({ message: 'Chat not found' });
-        }
+        if (!chat) return next(createError(404, "Not found!"));
         res.status(200).json(chat);
     } catch (err) {
         next(err)
