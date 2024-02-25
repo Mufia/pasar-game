@@ -24,7 +24,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import Profile from "./pages/profile/Profile";
+//import Profile from "./pages/profile/Profile";
 
 
 

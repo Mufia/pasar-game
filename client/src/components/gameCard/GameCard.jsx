@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./GameCard.scss";
 
-function GameCard({ card }) {
+function GameCard({ games }) {
   return (
     <div className="gameCard">
-    <Link to={`/posts?cat=${card.cat}`} className="link">
-        <img src={card.icon} alt=" "/>
-        <span className="title">{card.title}</span>
+    <Link to={`/posts?cat=${games.cat}`} className="link">
+        <img src={games.icon} alt=" "/>
+        <span className="title">{games.title}</span>
     </Link>
     </div>
   );
