@@ -31,9 +31,6 @@ const Chat = () => {
     getConversations();
   }, [currentUser._id]);
 
-  console.log(conversations)
-
-  console.log(currentChat);
 
   useEffect (() => {
     const getMessages = async () => {
@@ -47,7 +44,11 @@ const Chat = () => {
     getMessages();
   }, [newMessage, currentChat])
 
-  console.log(messages)
+  if (currentUser.isAdmin) {
+    console.log(conversations)
+    console.log(currentChat)
+    console.log(messages)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,7 +80,7 @@ const Chat = () => {
             {
               conversations.map( c=> (
                 <div onClick={() => setCurrentChat(c)}>
-                  <Conversation conversation={c} currentUser={currentUser} />
+                  <Conversation conversation={c} currentUser={currentUser} key={c._id} />
                 </div>
               ))}
           </div>

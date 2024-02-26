@@ -44,6 +44,7 @@ function MyPosts() {
 
  const handleSold = (id) => {
     soldMutation.mutate(id);
+    window.location.reload();
   }
 
   return (
@@ -74,15 +75,19 @@ function MyPosts() {
                 <td>
                   <img className="image" src={post.cover} alt="" />
                 </td>
-                <td>{post.title}</td>
+                <td><Link to={`/post/${post._id}`} className="link">{post.title}</Link></td>
                 <td>{post.price}</td>
-                <td>
-                  <img
+                <td className="action">
+                  {
+                    post.isSold ? " " :
+                    <img
                     className="delete"
                     src="./img/delete.png"
                     alt=""
                     onClick={() => handleDelete(post._id)}
                   />
+                  }
+                  
                   {
                     post?.isSold ? 
                     <span>Terjual</span> :

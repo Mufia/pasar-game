@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const ChatSchema = new Schema ({
     chatName: {type : String},
+    img : {type : String},
     isGroupChat: {type : Boolean},
     seller :{
         type : mongoose.Schema.Types.ObjectId,
@@ -22,8 +23,15 @@ const ChatSchema = new Schema ({
     orderId: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: "Order",
-        required: true,
       },
+    postId : {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Post",
+    },
+    userId : {
+        type : String,
+        required : false,
+    }
 },{
     timestamps: true,
   }

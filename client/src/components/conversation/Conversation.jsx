@@ -6,8 +6,26 @@ export default function Conversation({conversation, currentUser}) {
 
   return (
     <div className='conversation'>
-        <img className='conversationImg' src={conversation.orderId.img || "/img/noavatar.jpg"} alt="" />
-        <span className="conversationName">{conversation.chatName}</span>
+        <div>
+          {
+            conversation.isGroupChat ? 
+            <img className='conversationImg' src={conversation.img || "/img/noavatar.jpg"} alt="" />
+            : currentUser.isSeller ?
+            <img className='conversationImg' src={conversation.buyer.img || "/img/noavatar.jpg"} alt="" />
+            : 
+            <img className='conversationImg' src={conversation.seller.img || "/img/noavatar.jpg"} alt="" />
+          }
+        </div>
+        <div>
+          {
+            conversation.isGroupChat ? 
+            <span>{conversation.chatName}</span>
+            : currentUser.isSeller ? 
+            <span>{conversation.buyer.username}</span>
+            : 
+            <span>{conversation.seller.username} </span>
+          }
+        </div>
     </div>
   )
 }

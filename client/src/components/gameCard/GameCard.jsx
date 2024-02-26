@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./GameCard.scss";
 
-function GameCard({ games }) {
+function GameCard({ games}) {
   return (
     <div className="gameCard">
     <Link to={`/posts?cat=${games.cat}`} className="link">

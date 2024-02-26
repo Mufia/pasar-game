@@ -19,6 +19,7 @@ export const createOrder = async (req, res, next) => {
       sellerId: post.userId,
       price: post.price,
       payment_intent :"temporary",
+      orderId : req.userId + post._id
   });
 
     await newOrder.save();
@@ -85,4 +86,14 @@ export const completeOrder = async (req, res, next) => {
 };
 
 
-
+export const getOrder = async (req, res, next) => {
+  
+  try {
+    const orderId = req.params.orderId
+    const order = await Order.findOne({orderId})
+    if (!order) return next(createError(404, "Not found!"));
+    res.status(200).json(order)
+  } catch (err) {
+    next(err)
+  }
+}

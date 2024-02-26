@@ -1,8 +1,8 @@
 import Chat from "../models/chat.model.js";
 import createError from "../utils/createError.js";
 import Order from "../models/order.model.js";
-import User from "../models/user.model.js"
-
+import User from "../models/user.model.js";
+import Post from "../models/post.model.js";
 
 export const createGroupChat = async (req, res, next) => {
     if (!req.isAdmin)
@@ -16,6 +16,7 @@ export const createGroupChat = async (req, res, next) => {
             seller : order.sellerId,
             buyer: order.buyerId,
             isGroupChat: true,
+            img : order.img,
             groupAdmin: req.userId,
 
     })
@@ -38,19 +39,21 @@ export const createChat = async (req, res, next) => {
     return next(createError(403, "Only buyer can create Chat!"));
 
     try {
-        const order = await Order.findById(req.params.orderId)
+        const post = await Post.findById(req.params.postId)
         const newChat = new Chat ({
-            orderId : order._id,
-            chatName : order.title,
-            seller : order.sellerId,
-            buyer: order.buyerId,
-            isGroupChat: false,
+            postId : post._id,
+            chatName : post.title,
+            seller : post.userId,
+            buyer : req.userId,
+            img : post.cover,
+            isGroupChat : false,
+            userId : req.userId + post.userId
         })
 
         const savedChat = await newChat.save();
-        const fullChat = await savedChat.findOne({_id : savedChat._id})
+        const fullChat = await Chat.findOne({_id : savedChat._id})
         .populate("seller", "-password")
-        .populate("buyeer", "-password")
+        .populate("buyer", "-password")
         res.status(200).json(fullChat)
     } catch (err) {
         next(err)
@@ -64,7 +67,6 @@ export const getChats = async (req, res, next) => {
         await Chat.find(req.isAdmin? {groupAdmin : {$eq :req.userId}} : req.isSeller? {seller: {$eq :req.userId}} : {buyer : {$eq : req.userId}})
         .populate("seller", "-password")
         .populate("buyer", "-password")
-        .populate("groupAdmin", "-password")
         .populate("orderId")
         .populate("latestMessage")
         .sort({updateAt : -1})
@@ -80,7 +82,7 @@ export const getChats = async (req, res, next) => {
     }
 }
 
-export const getChat = async (req, res, next) => {
+export const getGroupChat = async (req, res, next) => {
     try {
         const orderId = req.params.orderId;
         const chat = await Chat.findOne({orderId});
@@ -90,4 +92,16 @@ export const getChat = async (req, res, next) => {
         next(err)
     }
 }
+
+export const getChat = async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        const chat = await Chat.findOne({userId});
+        if (!chat) return next(createError(404, "Not found!"));
+        res.status(200).json(chat);
+    } catch (err) {
+        next(err)
+    }
+}
+
 

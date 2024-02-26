@@ -82,23 +82,14 @@ const Orders = () => {
               <th>Image</th>
               <th>Title</th>
               <th>Price</th>
-              <th>Contact</th>
               <th>Status</th>
             {data.map((order) => (
               <tr key={order._id}>
                 <td>
                   <img className="image" src={order.img} alt="" />
                 </td>
-                <td>{order.title}</td>
+                <td><Link to={`/post/${order.postId}`} className="link">{order.title}</Link></td>
                 <td>{order.price}</td>
-                <td>
-                  <img
-                    className="message"
-                    src="./img/message.png"
-                    alt=""
-                    onClick={() => handleContact(order)}
-                  />
-                </td>
                 <td>
                 {!currentUser.isSeller && (
                     <>

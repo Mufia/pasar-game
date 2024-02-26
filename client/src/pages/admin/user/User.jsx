@@ -5,13 +5,9 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from '../../../utils/newRequest';
 
 
-
-
-
 const User = () => {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -23,8 +19,7 @@ const User = () => {
         return res.data;
       }),
   });
-
-
+  
   const mutation = useMutation({
     mutationFn: (id) => {
       return newRequest.delete(`/users/admin/${id}`);

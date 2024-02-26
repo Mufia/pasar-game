@@ -5,7 +5,7 @@ import { verifyToken } from "../middleware/jwt.js";
 const router = express.Router();
 
 router.post("/",verifyToken, newGame)
-router.get("/", verifyToken, getGames)
-router.get("/popular", verifyToken, getPopularGames)
+router.get("/",getGames)
+router.get("/popular",getPopularGames)
 
 export default router;

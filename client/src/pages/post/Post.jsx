@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Post.scss";
 import { Slider } from "infinite-react-carousel/lib";
-import { Link, json, useParams } from "react-router-dom";
+import { Link, json, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import WaButton from "../../components/waButton/WaButton";
@@ -10,7 +10,8 @@ import FormatRupiah from "../../utils/formatRupiah";
 function Post() {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
+  const navigate = useNavigate();
+  const [orderId, setOrderId] = useState('')
   const { id } = useParams();
 
   const { isLoading, error, data} = useQuery({
@@ -38,29 +39,28 @@ function Post() {
 
 
 
-
   const message = (`Halo, saya tertarik dengan akun ${data?.title} yang anda tawarkan di Pasar Game`);
 
-  const handleContact = async (order) => {
-    const sellerId = dataUser._id;
-    const buyerId = currentUser._id;
-    const id = sellerId + buyerId;
+  console.log(data)
+  const postId = data?._id;
+  console.log(postId)
+  useEffect(() => {
+    if (currentUser && data) {
+      const combinedOrderId = currentUser._id + data._id;
+      setOrderId(combinedOrderId);
+    }
+  }, [currentUser, data])
 
+  const handleOrder = async () => {
     try {
-      const res = await newRequest.get(`/conversations/single/${id}`);
-      navigate(`/message/${res.data.id}`);
+      const res = await newRequest.get(`/orders/single/${encodeURIComponent(orderId)}`)
+      navigate(`/orders`)
     } catch (err) {
       if (err.response.status === 404) {
-        const res = await newRequest.post(`/conversations/`, {
-          to: currentUser.seller ? buyerId : sellerId,
-        });
-        navigate(`/message/${res.data.id}`);
+        const res = await newRequest.post(`/orders/${postId}`)
+        navigate(`/orders`)
       }
     }
-  };
-
-  const handleOrder = async (post) => {
-
   }
 
   return (
@@ -76,20 +76,6 @@ function Post() {
               <h1>{data.title}</h1>
               {isSold ? <h1 className="sold">[Terjual]</h1> : " " }
             </div>
-            {/*isLoadingUser ? (
-              "loading"
-            ) : errorUser ? (
-              "Something went wrong!"
-            ) : (
-              <div className="user">
-                <img
-                  className="pp"
-                  src={dataUser.img || "/img/noavatar.jpg"}
-                  alt=""
-                />
-                <span>{dataUser.username}</span>
-              </div>
-            )*/}
             <Slider slidesToShow={1} arrowsScroll={1} className="slider">
               {data.images.map((img) => (
                 <img key={img} src={img} alt="" />
@@ -98,8 +84,6 @@ function Post() {
             <h2><FormatRupiah value={data.price}/></h2>
             <h2>Deskripsi</h2>
             <pre>{data.desc}</pre>
-            
-            
           </div>
           <div className="right">
           {isLoadingUser ? (
@@ -122,7 +106,7 @@ function Post() {
                       : <div className="button">
                         <WaButton phoneNumber={dataUser.phone} message={message}/>
                         <button>Chat</button>
-                        <button>Pesan Sekarang</button>
+                        <button onClick={handleOrder} >Pesan Sekarang</button>
                         </div>
                          
                     }
