@@ -53,8 +53,8 @@ function Navbar() {
             <Link className="link" to="/admin/orders">Order</Link>
             </>
           )}
-          {/*<Link className="link" to="/middleman">Middle Man</Link>
-          <Link className="link" to="/cara">Tata Cara</Link>*/}
+          
+          {/*<Link className="link" to="/cara">Tata Cara</Link>*/}
           {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
               <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />

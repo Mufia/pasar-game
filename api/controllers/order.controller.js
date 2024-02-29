@@ -44,7 +44,9 @@ export const getOrders = async (req, res, next) => {
 };
 
 export const getAllOrders = async (req, res, next) => {
-  const orders = await Order.find();
+  const orders = await Order.find({})
+    .populate ("buyerId", "-password")
+    .populate ("sellerId", "-password")
   
   res.status(200).send(orders);
 }

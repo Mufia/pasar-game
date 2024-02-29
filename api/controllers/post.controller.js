@@ -19,6 +19,7 @@ export const createPost = async (req, res, next) => {
     next(err);
   }
 };
+
 export const deletePost = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -31,6 +32,7 @@ export const deletePost = async (req, res, next) => {
     next(err);
   }
 };
+
 export const getPost = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -62,7 +64,8 @@ export const getPosts = async (req, res, next) => {
 };
 
 export const getAllPosts = async (req, res, next) => {
-  const posts = await Post.find()
+  const posts = await Post.find({})
+  .populate ("userId", "--password")
   
   res.status(200).send(posts);
 }
@@ -84,4 +87,17 @@ export const soldPost = async (req, res, next) => {
     
   }
   
+};
+
+export const adminDeletePost = async (req, res, next) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!req.isAdmin)
+      return next(createError(403, "Only Admin Can Delete Post !"));
+
+    await Post.findByIdAndDelete(req.params.id);
+    res.status(200).send("post has been deleted!");
+  } catch (err) {
+    next(err);
+  }
 };

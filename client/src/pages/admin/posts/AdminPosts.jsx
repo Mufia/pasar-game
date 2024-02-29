@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const AdminPosts = () => {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const queryClient = useQueryClient();
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["posts"],
@@ -17,6 +18,20 @@ const AdminPosts = () => {
   });
 
   console.log(data)
+
+  const mutation = useMutation({
+    mutationFn: (id) => {
+      return newRequest.delete(`/posts/admin/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["post"]);
+    },
+  });
+
+  const handleDelete = (id) => {
+    mutation.mutate(id);
+    window.location.reload();
+  };
 
 
   return (
@@ -31,18 +46,22 @@ const AdminPosts = () => {
             <tr>
               <th>Image</th>
               <th>Title</th>
-              <th>Seller Id</th>
+              <th>Seller</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
             {data?.map((post) => (
               <tr key={post._id}>
                 <td>
                   <img className='image' src={post.cover} alt="" />
                 </td>
+                <td>
                 <Link to={`/post/${post._id}`} className="link">
                   <td>{post.title}</td>
                 </Link>
-                <td>{post.userId}</td>
+                </td>
+
+                <td>{post.userId.username}</td>
                 <td>
                   {
                     post.isSold? 
@@ -50,7 +69,13 @@ const AdminPosts = () => {
                     : "Belum Terjual"
                   }
                 </td>
-                 
+                <td>
+                  <img 
+                  className='delete'
+                  src="/img/delete.png"
+                  alt="" 
+                  onClick={() => handleDelete(post._id)}/>
+                </td>
                
               </tr>
             ))}

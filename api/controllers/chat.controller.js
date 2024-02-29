@@ -67,7 +67,7 @@ export const getChats = async (req, res, next) => {
         await Chat.find(req.isAdmin? {groupAdmin : {$eq :req.userId}} : req.isSeller? {seller: {$eq :req.userId}} : {buyer : {$eq : req.userId}})
         .populate("seller", "-password")
         .populate("buyer", "-password")
-        .populate("orderId")
+        .populate ("groupAdmin", "-password")
         .populate("latestMessage")
         .sort({updateAt : -1})
         .then (async (results) => {
