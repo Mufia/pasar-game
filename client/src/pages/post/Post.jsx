@@ -12,6 +12,7 @@ function Post() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const navigate = useNavigate();
   const [orderId, setOrderId] = useState('')
+  const [userId, setUserId] = useState('')
   const { id } = useParams();
 
   const { isLoading, error, data} = useQuery({
@@ -22,7 +23,7 @@ function Post() {
       }),
   });
   const isSold = data?.isSold;
-  const userId = data?.userId;
+  const user = data?.userId;
 
   const {
     isLoading: isLoadingUser,
@@ -31,10 +32,10 @@ function Post() {
   } = useQuery({
     queryKey: ["user"],
     queryFn: () =>
-      newRequest.get(`/users/${userId}`).then((res) => {
+      newRequest.get(`/users/${user}`).then((res) => {
         return res.data;
       }),
-    enabled: !!userId,
+    enabled: !!user,
   });
 
 
@@ -59,6 +60,27 @@ function Post() {
       if (err.response.status === 404) {
         const res = await newRequest.post(`/orders/${postId}`)
         navigate(`/orders`)
+      }
+    }
+  }
+
+  useEffect (() => {
+    if (currentUser && data) {
+      const combinedUserId = currentUser._id + data.userId;
+      setUserId (combinedUserId);
+    }
+  })
+
+  console.log(userId)
+
+  const handleChat = async () => {
+    try {
+      const res = await newRequest.get(`/chat/single/${userId}`)
+      navigate(`/chat`)
+    } catch (err) {
+      if (err.response.status === 404) {
+        const res = await newRequest.post(`/chat/${postId}`)
+        navigate(`/chat`)
       }
     }
   }
@@ -105,7 +127,7 @@ function Post() {
                       <p>Silahkan login dengan akun user untuk menghubugni penjual</p> 
                       : <div className="button">
                         <WaButton phoneNumber={dataUser.phone} message={message}/>
-                        <button>Chat</button>
+                        <button onClick={handleChat}>Chat</button>
                         <button onClick={handleOrder} >Pesan Sekarang</button>
                         </div>
                          

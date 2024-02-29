@@ -3,6 +3,8 @@ import "./AdminOrders.scss"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from '../../../utils/newRequest';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import moment from "moment"
 
 const AdminOrders = () => {
 
@@ -41,6 +43,7 @@ const AdminOrders = () => {
     }
   }
 
+
   return (
     <div className='adminOrders'>
       {currentUser?.isAdmin && (
@@ -52,7 +55,9 @@ const AdminOrders = () => {
           <table>
             <tr>
               <th>Image</th>
-              <th>Title</th>
+              <th>Post Title</th>
+              <th>Buyer</th>
+              <th>Seller</th>
               <th>Price</th>
               <th>Status</th>
             </tr>
@@ -61,17 +66,22 @@ const AdminOrders = () => {
                 <td>
                   <img className='image' src={order.img} alt="" />
                 </td>
-                <td>{order.title}</td>
+                <td><Link to={`/post/${order.postId}`} className="link">
+                  <td>{order.title}</td>
+                </Link></td>
+                <td>{order.buyerId?.username || "user deleted"}</td>
+                <td>{order.sellerId?.username || "user deleted"}</td>
                 <td>{order.price}</td>
                 <td>
                   {
                     order.isCompleted?
-                    <span>PesananSelesai</span>
+                    <span>Pesanan Selesai</span>
                     : order.onProcces?
                     <button onClick={() => handleGroupchat(order._id)}>Group Chat</button>
                     : "Menunggu Konfirmasi"
                   }
                 </td>
+                <td></td>
               </tr>
             ))}
           </table>
