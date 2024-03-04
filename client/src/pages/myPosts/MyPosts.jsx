@@ -4,6 +4,7 @@ import "./MyPosts.scss";
 import getCurrentUser from "../../utils/getCurrentUser";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import FormatRupiah from "../../utils/formatRupiah";
 
 function MyPosts() {
   const currentUser = getCurrentUser();
@@ -76,7 +77,7 @@ function MyPosts() {
                   <img className="image" src={post.cover} alt="" />
                 </td>
                 <td><Link to={`/post/${post._id}`} className="link">{post.title}</Link></td>
-                <td>{post.price}</td>
+                <td><FormatRupiah value={post.price}/></td>
                 <td className="action">
                   {
                     post.isSold ? " " :

@@ -179,7 +179,7 @@
       flex: 1;
       border: 1px solid lightgray;
       padding: 20px;
-      border-radius: 5px;
+      border-radius: 20px;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -187,6 +187,8 @@
       max-height: 500px;
       position: sticky;
       top: 150px;
+      background-color: #56bbff77;
+      
 
       .seller {
 
@@ -221,6 +223,15 @@
             align-items: center;
             justify-content: center;
 
+            span {
+              font-weight: 700;
+              font-size: 18px;
+            }
+
+            h3 {
+              color: red;
+            }
+
             .button {
               display: flex;
               gap: 5px;
@@ -229,7 +240,7 @@
 
             button {
               background-color: blue;
-              border-radius: 5px;
+              border-radius: 10px;
               border: 1px solid gray;
               padding: 10px;
             }

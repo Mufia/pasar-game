@@ -120,13 +120,14 @@ function Post() {
                   <div className="info">
                     <span>{dataUser.username}</span>
                     {
-                      isSold ? <h3>Akun ini telah Terjual</h3> :
+                      isSold ? 
+                      <h3>Akun ini telah Terjual</h3> :
                       !currentUser? 
                       <p>Silahkan login untuk menghubungi penjual</p> 
                       : currentUser.isSeller? 
                       <p>Silahkan login dengan akun user untuk menghubugni penjual</p> 
                       : <div className="button">
-                        <WaButton phoneNumber={dataUser.phone} message={message}/>
+                        {/*<WaButton phoneNumber={dataUser.phone} message={message}/>*/}
                         <button onClick={handleChat}>Chat</button>
                         <button onClick={handleOrder} >Pesan Sekarang</button>
                         </div>

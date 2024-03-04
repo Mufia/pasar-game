@@ -19,6 +19,7 @@ const PostCard = ({ item }) => {
       <div className="postCard">
         <img src={item.cover} alt="" />
         <div className="info">
+          <h4>{item.title}</h4>
           {isLoading ? (
             "loading"
           ) : error ? (
@@ -29,7 +30,6 @@ const PostCard = ({ item }) => {
               <span>{data.username}</span>
             </div>
           )}
-          <h4>{item.title}</h4>
         </div>
         <hr />
         <div className="detail">

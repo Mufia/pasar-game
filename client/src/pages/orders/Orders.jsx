@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Orders.scss";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import FormatRupiah from "../../utils/formatRupiah";
 
 const Orders = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -21,23 +22,6 @@ const Orders = () => {
   });
    console.log(data)
 
-  const handleContact = async (order) => {
-    const sellerId = order.sellerId;
-    const buyerId = order.buyerId;
-    const id = sellerId + buyerId;
-
-    try {
-      const res = await newRequest.get(`/conversations/single/${id}`);
-      navigate(`/message/${res.data.id}`);
-    } catch (err) {
-      if (err.response.status === 404) {
-        const res = await newRequest.post(`/conversations/`, {
-          to: currentUser.seller ? buyerId : sellerId,
-        });
-        navigate(`/message/${res.data.id}`);
-      }
-    }
-  };
 
   const confirmMutation = useMutation({
     mutationFn: (id) => {
@@ -81,6 +65,12 @@ const Orders = () => {
           <table>
               <th>Image</th>
               <th>Title</th>
+              <th>
+                {
+                  currentUser.isSeller ? "Buyer"
+                  : "Seller"
+                }
+              </th>
               <th>Price</th>
               <th>Status</th>
             {data.map((order) => (
@@ -89,7 +79,14 @@ const Orders = () => {
                   <img className="image" src={order.img} alt="" />
                 </td>
                 <td><Link to={`/post/${order.postId}`} className="link">{order.title}</Link></td>
-                <td>{order.price}</td>
+                <td>
+                  {
+                    currentUser.isSeller ? 
+                    <span>{order.buyerId.username}</span>
+                    : <span>{order.sellerId.username}</span>
+                  }
+                </td>
+                <td><FormatRupiah value={order.price}/></td>
                 <td>
                 {!currentUser.isSeller && (
                     <>

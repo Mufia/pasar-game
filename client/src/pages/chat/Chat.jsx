@@ -5,6 +5,7 @@ import Message from '../../components/message/Message';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from '../../utils/newRequest';
 import { useContext, useEffect, useRef, useState } from "react";
+import {io} from "socket.io-client"
 
 
 const Chat = () => {
@@ -13,10 +14,15 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [socket, setSocket] = useState(null);
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const scrollRef = useRef();
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  useEffect (() => {
+    setSocket(io("ws://localhost:8900"))
+  },[])
 
 
   useEffect(() => {

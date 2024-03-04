@@ -3,6 +3,7 @@ import "./AdminPosts.scss"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from '../../../utils/newRequest';
 import { Link } from "react-router-dom";
+import FormatRupiah from "../../../utils/formatRupiah";
 
 const AdminPosts = () => {
 
@@ -47,6 +48,7 @@ const AdminPosts = () => {
               <th>Image</th>
               <th>Title</th>
               <th>Seller</th>
+              <th>Price</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -62,6 +64,7 @@ const AdminPosts = () => {
                 </td>
 
                 <td>{post.userId.username}</td>
+                <td><FormatRupiah value={post.price}/></td>
                 <td>
                   {
                     post.isSold? 
@@ -82,7 +85,8 @@ const AdminPosts = () => {
           </table>
         </div>
         </>
-      ) }
+      )}
+      
     </div>
   )
 }

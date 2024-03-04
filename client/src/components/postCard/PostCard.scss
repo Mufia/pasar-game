@@ -1,27 +1,33 @@
 .postCard {
   width: 324px;
-  height: 400px;
+  height: 350px;
   // border: 1px solid rgb(237, 236, 236);
   border: 1px solid rgb(228, 228, 228);
   margin-bottom: 40px;
   font-weight: bold;
+  border-radius: 5px;
 
   img {
     width: 100%;
     height: 50%;
     object-fit: cover;
+    border-radius: 5px;
   }
 
   .info {
-    padding: 10px 20px;
+    padding: 10px ;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    margin-bottom: 10px;
 
     .user {
       display: flex;
       align-items: center;
       gap: 10px;
+      width: 100px;
+      max-width: 324px;
+
 
       img {
         width: 26px;
@@ -30,8 +36,6 @@
         object-fit: cover;
       }
 
-      span {
-      }
     }
 
     p {
@@ -70,7 +74,7 @@
     justify-content: space-between;
 
     .sold{
-      color: red;
+      color: rgb(255, 0, 0);
     }
 
     img {

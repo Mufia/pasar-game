@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import "./Add.scss";
 import { postReducer, INITIAL_STATE } from "../../reducers/postReducer.js";
 import upload from "../../utils/upload";
@@ -10,9 +10,9 @@ const Add = () => {
   const [singleFile, setSingleFile] = useState(undefined);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [games, setGames] = useState([]);
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log(currentUser.username)
 
   const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
 
@@ -62,9 +62,24 @@ const Add = () => {
     },
   });
 
+  useEffect(() => {
+    const getGames = async () => {
+      try {
+        const res = await newRequest.get("/game");
+        setGames(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getGames();
+  }, []);
+
+  console.log(games)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate(state);
+    alert ("Iklan Telah Ditambahkan")
     //navigate("/myposts")
   };
 
@@ -84,15 +99,10 @@ const Add = () => {
             />
             <label htmlFor="">Judul Game</label>
             <select name="cat" id="cat" onChange={handleChange}>
-            <option value=" "> </option>
-              <option value="genshin">Genshin Impact</option>
-              <option value="hsr">Honkai Star Rail</option>
-              <option value="arknights">Arknights</option>
-              <option value="fgo">Fate Grand Order</option>
-              <option value="coc">Clash Of Clans</option>
-              <option value="dn2e">Dragon Nest 2 Evolution</option>
-              <option value="mlbb">Mobile Legends</option>
-              <option value="pubg">PUBG</option>
+              <option value=" "> </option>
+              {games.map(games => (
+              <option key={games._id} value={games.cat}>{games.title}</option>
+                ))}
             </select>
             <div className="images">
               <div className="imagesInputs">

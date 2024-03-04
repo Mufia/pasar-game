@@ -5,6 +5,7 @@ import newRequest from '../../../utils/newRequest';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import moment from "moment"
+import FormatRupiah from "../../../utils/formatRupiah";
 
 const AdminOrders = () => {
 
@@ -71,7 +72,7 @@ const AdminOrders = () => {
                 </Link></td>
                 <td>{order.buyerId?.username || "user deleted"}</td>
                 <td>{order.sellerId?.username || "user deleted"}</td>
-                <td>{order.price}</td>
+                <td><FormatRupiah value={order.price}/></td>
                 <td>
                   {
                     order.isCompleted?

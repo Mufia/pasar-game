@@ -15,7 +15,7 @@ import Orders from "./pages/orders/Orders";
 import User from "./pages/admin/user/User";
 import AdminOrders from "./pages/admin/orders/AdminOrders";
 import AdminPosts from "./pages/admin/posts/AdminPosts";
-import Chat from "./pages/Chat/Chat";
+import Chat from "./pages/chat/Chat";
 //import Messages from "./pages/messages/Messages";
 //import Message from "./pages/message/Message";
 import MyPosts from "./pages/myPosts/MyPosts";

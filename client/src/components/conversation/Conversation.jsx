@@ -21,9 +21,9 @@ export default function Conversation({conversation, currentUser}) {
             conversation.isGroupChat ? 
             <span>{conversation.chatName}</span>
             : currentUser.isSeller ? 
-            <span>{conversation.buyer.username} ({conversation.chatName})</span>
+            <span>{conversation.buyer.username} </span>
             : 
-            <span>{conversation.seller.username} ({conversation.chatName}) </span>
+            <span>{conversation.seller.username}  </span>
           }
         </div>
     </div>
