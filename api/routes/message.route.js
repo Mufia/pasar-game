@@ -1,6 +1,5 @@
 import express from "express";
 import {
-  createMessage,
   getMessages,
   sendMessage,
 } from "../controllers/message.controller.js";

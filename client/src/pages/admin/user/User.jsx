@@ -75,32 +75,6 @@ const User = () => {
               </tr>
             ))}
           </table>
-          {/*<table>
-            <thead>Seller</thead>
-            <tr>
-            <th>Image</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Aksi</th>
-            </tr>
-            {seller?.map((seller) => (
-              <tr key={seller._id}>
-                <td className='propic'>
-                  <img 
-                  className='image'
-                  src={seller.img || "/img/noavatar.jpg"} alt="" />
-                </td>
-                <td>{seller.username}</td>
-                <td>{seller.email}</td>
-                <td>
-                  <img 
-                  className='delete'
-                  src="/img/delete.png"
-                  alt="" />
-                </td>
-              </tr>
-            ))}
-            </table>*/}
         </div>
         </>
       )}

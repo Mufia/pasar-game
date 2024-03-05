@@ -4,10 +4,8 @@ import Featured from "../../components/featured/Featured";
 import Slide from "../../components/slide/Slide";
 import CatCard from "../../components/catCard/CatCard";
 import GameCard from "../../components/gameCard/GameCard";
-import { cards } from "../../data";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import PostCard from "../../components/postCard/PostCard";
 
 
 
@@ -15,7 +13,7 @@ function Home() {
 
   const [games, setGames] = useState([]);
   const [popularGames, setPopularGames] = useState([]);
-
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   useEffect(() => {
     const getGames = async () => {
@@ -40,17 +38,22 @@ function Home() {
       }
     };
     getPopularGames();
-  }, []);
+  }, [games]);
+
+  if (currentUser?.isAdmin) {
+    console.log(games)
+    console.log(popularGames)
+  }
 
   return (
     <div className="home">
       <Featured />
       <h1>Popular Games</h1>
       <Slide slidesToShow={5} arrowsScroll={5}>
-        {cards.map((card) => (
-          <CatCard key={card.id} card={card} />
+        {popularGames.map((p) => (
+          <CatCard key={p.id} popularGames={p} />
         ))}
-      </Slide>
+        </Slide>
       <h1>Semua Game</h1>
       <div className="cards" >
         {games.map((g) => (

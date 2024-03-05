@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import WaIcon from '../waIcon/WaIcon';
 import "./Mmcard.scss"
 import WaButton from '../waButton/WaButton';
 

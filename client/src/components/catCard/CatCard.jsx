@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./CatCard.scss";
 
-function CatCard({ card }) {
+function CatCard({ popularGames }) {
   return (
-    <Link to={`/posts?cat=${card.cat}`}>
+    <Link to={`/posts?cat=${popularGames.cat}`}>
       <div className="catCard">
-        <img src={card.img} alt="" />
-        <span className="title">{card.title}</span>
+        <img src={popularGames.img} alt="" />
+        <span className="title">{popularGames.title}</span>
       </div>
     </Link>
   );
