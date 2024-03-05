@@ -34,7 +34,7 @@ const AdminOrders = () => {
   
   const handleGroupchat = async (orderId) => {
     try {
-      const res = await newRequest.get(`/chat/single/group${orderId}`);
+      const res = await newRequest.get(`/chat/single/group/${orderId}`);
       navigate(`/chat`)
     } catch (err) {
       if (err.response.status === 404) {
