@@ -11,4 +11,4 @@ cd client
 
 npm install --legacy-peer-deps
 
-there is conflicting dependencie3s with @infinite-react-carousel
+there is conflicting dependencies with @infinite-react-carousel
