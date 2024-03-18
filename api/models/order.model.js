@@ -37,6 +37,10 @@ const OrderSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    isCanceled : {
+      type: Boolean,
+      default : false,
+    },
     orderId: {
       type: String,
       required: true,

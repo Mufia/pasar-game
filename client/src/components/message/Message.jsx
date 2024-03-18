@@ -2,12 +2,12 @@ import React from 'react'
 import "./Message.scss"
 import {format} from "timeago.js"
 
-export default function Message({message, own}) {
+export default function Message({message, own, currentUser}) {
 
   return (
     <div className={own ? "message own" : "message"}>
         {
-          own ? "" : 
+          own ? <span>{currentUser.username}</span> : 
           <div className="name">
             <span>{message.sender.username}</span>
           </div>

@@ -13,6 +13,7 @@ function Home() {
 
   const [games, setGames] = useState([]);
   const [popularGames, setPopularGames] = useState([]);
+  const [loading, setLoading] = useState(true);
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   useEffect(() => {
@@ -33,12 +34,13 @@ function Home() {
       try {
         const res = await newRequest.get("/game/popular");
         setPopularGames(res.data);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
     };
     getPopularGames();
-  }, [games]);
+  }, []);
 
   if (currentUser?.isAdmin) {
     console.log(games)
@@ -49,18 +51,30 @@ function Home() {
     <div className="home">
       <Featured />
       <h1>Popular Games</h1>
-      <Slide slidesToShow={5} arrowsScroll={5}>
-        {popularGames.map((p) => (
-          <CatCard key={p.id} popularGames={p} />
-        ))}
-        </Slide>
+      {
+        loading ? (
+          <h1>Loading....</h1>
+        ) : (
+          <Slide slidesToShow={5} arrowsScroll={5}>
+            {popularGames.map((p) => (
+            <CatCard key={p.id} popularGames={p} />
+            ))}
+          </Slide>
+        )
+      }
+      
       <h1>Semua Game</h1>
-      <div className="cards" >
-        {games.map((g) => (
-          <GameCard games = {g} key={g._id}/>
-        ))}
-      </div>
-
+      {
+        loading ? (
+          <h1>Loading....</h1>
+        ) : (
+          <div className="cards" >
+          {games.map((g) => (
+            <GameCard games = {g} key={g._id}/>
+          ))}
+        </div>
+        )
+      }
     </div>
   );
 }

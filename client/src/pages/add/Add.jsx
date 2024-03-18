@@ -74,7 +74,6 @@ const Add = () => {
     getGames();
   }, []);
 
-  console.log(games)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,6 +82,7 @@ const Add = () => {
     //navigate("/myposts")
   };
 
+  console.log (state)
 
   return (
     <div className="add">

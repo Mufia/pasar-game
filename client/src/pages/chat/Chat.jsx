@@ -86,7 +86,7 @@ const Chat = () => {
             {
               conversations.map( c=> (
                 <div onClick={() => setCurrentChat(c)}>
-                  <Conversation conversation={c} currentUser={currentUser} key={c._id} />
+                  <Conversation conversation={c} currentUser={currentUser} key={c._id}/>
                 </div>
               ))}
           </div>
@@ -99,7 +99,7 @@ const Chat = () => {
               <div className="top" >
                 {messages.map ((m) => (
                   <div ref={scrollRef}>
-                  <Message message={m}  own = {m.sender._id === currentUser._id} key={m.chatId} />
+                  <Message message={m}  own = {m.sender._id === currentUser._id} key={m.chatId} currentUser={currentUser}/>
                   </div>
                 ))}
               </div>

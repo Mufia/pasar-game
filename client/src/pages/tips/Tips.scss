@@ -1,0 +1,16 @@
+.tips {
+  min-height: 720px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 1400px;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 720px;
+    margin-top: 20px;
+  }
+}

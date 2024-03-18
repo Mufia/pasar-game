@@ -1,50 +1,80 @@
 .cara{
-    min-height: 720px;
-    width: 100%;
+  min-height: 720px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 1400px;
+    padding: 30px 50px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 720px;
+    margin-top: 20px;
 
-    .container {
-        width: 1400px;
-        padding: 30px 50px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        min-height: 720px;
-        margin-top: 20px;
+      .tentang {
 
-        .tentang {
-
-            .content {
-                margin-top: 10px;
-                width: 80%;
-                padding: 10px;
-                font-size: 20px;
-                text-align: justify;
-                background-color: rgba(240, 253, 249, 0.534);
-            }
+        .content {
+          margin-top: 10px;
+          width: 80%;
+          padding: 10px;
+          font-size: 20px;
+          text-align: justify;
+          background-color: rgba(240, 253, 249, 0.534);
         }
+      }
 
-        .ketentuan {
+      .ketentuan {
+        margin-top: 50px;
 
-            .list {
+        .list {
 
-                ol {
-                    background-color: rgba(240, 253, 249, 0.534);
-                    width: 80%; 
-                    margin-top: 20px;
-                    font-weight: 300;
-                    list-style-position: inside;
+          ol {
+            background-color: rgba(240, 253, 249, 0.534);
+            width: 80%; 
+            margin-top: 20px;
+            font-weight: 300;
+            list-style-position: inside;
 
-                    li {
-                        margin-top: 10px;
-                        padding-left: 20px;
-                        text-indent: -20px;
-                        text-align: justify;
-                        font-size: 20px;
-                    }
+            li {
+                margin-top: 10px;
+                padding-left: 20px;
+                text-indent: -20px;
+                text-align: justify;
+                font-size: 20px;
+            }
+          }
+        }
+      }
+
+      .alur {
+        margin-top: 50px;
+
+        .list {
+
+          ol {
+            background-color: rgba(240, 253, 249, 0.534);
+            width: 80%; 
+            margin-top: 20px;
+            font-weight: 300;
+            list-style-position: inside;
+
+            li {
+                margin-top: 10px;
+                padding-left: 20px;
+                text-indent: -20px;
+                text-align: justify;
+                font-size: 20px;
+
+                span {
+                  color: green;
+                  font-weight: 500;
                 }
             }
-       }
-    }
+          }
+        }
+  }
+
+  }
 }

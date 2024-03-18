@@ -22,6 +22,7 @@ function Post() {
         return res.data;
       }),
   });
+  
   const isSold = data?.isSold;
   const user = data?.userId;
 

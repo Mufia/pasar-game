@@ -18,11 +18,11 @@ const userSchema = new Schema({
   },
   img: {
     type: String,
-    required: false,
+    default: "https://res.cloudinary.com/mufia/image/upload/v1709916738/fiverr/qfpnf7vffohohn0be14c.jpg"
   },
   phone: {
     type: String,
-    required: true,
+    default : " ",
   },
   desc: {
     type: String,

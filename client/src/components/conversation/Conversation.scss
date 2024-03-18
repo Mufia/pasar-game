@@ -7,6 +7,10 @@
     background-color: rgba(122, 145, 252, 0.226);
     border-radius: 5px;
 
+    &.complete {
+        color: green;
+    }
+
     &:hover {
         background-color: rgb(238, 238, 238);
     }
@@ -23,5 +27,9 @@
     span {
         font-weight: 500;
         font-size: large;
+    }
+
+    .name {
+        font-size: 30px;
     }
 }

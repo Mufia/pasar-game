@@ -1,6 +1,5 @@
 import Post from "../models/post.model.js";
 import createError from "../utils/createError.js";
-import User from "../models/user.model.js"
 
 export const createPost = async (req, res, next) => {
   if (!req.isSeller)
@@ -23,7 +22,8 @@ export const createPost = async (req, res, next) => {
 export const deletePost = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id);
-    if (post.userId !== req.userId)
+
+    if (post.userId.toHexString() !== req.userId)
       return next(createError(403, "You can delete only your post!"));
 
     await Post.findByIdAndDelete(req.params.id);
@@ -75,7 +75,7 @@ export const soldPost = async (req, res, next) => {
   
   try {
     if (req.isSeller !== true ) {
-      return next(createError(403, "Hanya Seller yang bisa konfirmasi order"));
+      return next(createError(403, "Hanya Seller yang bisa update post"));
     }
     const soldPost =  await Post.findByIdAndUpdate(req.params.id,
       { isSold : true }, {new : true}

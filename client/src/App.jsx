@@ -16,10 +16,10 @@ import User from "./pages/admin/user/User";
 import AdminOrders from "./pages/admin/orders/AdminOrders";
 import AdminPosts from "./pages/admin/posts/AdminPosts";
 import Chat from "./pages/chat/Chat";
-//import Messages from "./pages/messages/Messages";
-//import Message from "./pages/message/Message";
+import AllPosts from "./pages/allPosts/AllPosts";
 import MyPosts from "./pages/myPosts/MyPosts";
 import Cara from "./pages/cara/Cara";
+import  Tips  from "./pages/tips/Tips";
 import {
   QueryClient,
   QueryClientProvider,
@@ -58,12 +58,20 @@ function App() {
           element: <Cara/>,
         },
         {
+          path: "/tips",
+          element: <Tips/>,
+        },
+        {
           path: "/middleman",
           element: <MiddleMan/>,
         },
         {
           path: "/posts",
           element: <Posts />,
+        },
+        {
+          path: "/allposts",
+          element: <AllPosts/>,
         },
         {
           path: "/myPosts",

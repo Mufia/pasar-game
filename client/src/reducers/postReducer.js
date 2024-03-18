@@ -1,6 +1,5 @@
 export const INITIAL_STATE = {
   userId: JSON.parse(localStorage.getItem("currentUser"))?._id,
-  seller: JSON.parse(localStorage.getItem("currentUser"))?.username,
   title: "",
   cat: "",
   cover: "",

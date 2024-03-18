@@ -61,7 +61,7 @@ function Posts() {
             : error
             ? "Something went wrong!"
             : empty
-            ? <h2>Belum ada iklan untuk game ini</h2>
+            ? "Belum ada iklan untuk game ini"
             : data?.map((post) => <PostCard key={post._id} item={post} />)
             }
         </div>

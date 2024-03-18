@@ -69,6 +69,7 @@ export const getChats = async (req, res, next) => {
         .populate("buyer", "-password")
         .populate ("groupAdmin", "-password")
         .populate("latestMessage")
+        .populate("orderId")
         .sort({updateAt : -1})
         .then (async (results) => {
             results = await User.populate(results, {
