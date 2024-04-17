@@ -23,6 +23,15 @@
 
       tr {
         height: 50px;
+
+        .status {
+            gap: 10px;
+          .cancel {
+            background-color: red ;
+            margin-left: 15px;
+          }
+        }
+
         th {
           text-align: left;
         }
@@ -58,7 +67,9 @@
             border: none;
             padding: 10px;
             cursor: pointer;
+            border-radius: 10px;
           }
+          
         }
         &:nth-child(even) {
           background-color: #1dbf730f;

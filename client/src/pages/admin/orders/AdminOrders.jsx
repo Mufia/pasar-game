@@ -31,6 +31,20 @@ const AdminOrders = () => {
       queryClient.invalidateQueries(["order"])
     }
   });
+
+  const cancelMutation = useMutation({
+    mutationFn: (id) => {
+      return newRequest.put(`/orders/cancel/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["order"]);
+    },
+  });
+
+  const handleCancel = (id) => {
+    cancelMutation.mutate(id);
+    window.location.reload();
+  };
   
   const handleGroupchat = async (orderId) => {
     try {
@@ -73,13 +87,19 @@ const AdminOrders = () => {
                 <td>{order.buyerId?.username || "user deleted"}</td>
                 <td>{order.sellerId?.username || "user deleted"}</td>
                 <td><FormatRupiah value={order.price}/></td>
-                <td>
+              <td className='status'>
                   {
                     order.isCompleted?
                     <span>Pesanan Selesai</span>
-                    : order.onProcces?
+                    : order.onProcess?
+                    <>
                     <button onClick={() => handleGroupchat(order._id)}>Group Chat</button>
-                    : "Menunggu Konfirmasi"
+                    <button className='cancel' onClick={() => handleCancel(order._id)} >Cancel</button>
+                    </>
+                    : order.isCanceled? 
+                    <span>Pesanan Dibatalkan</span>
+                    :"Menunggu Konfirmasi"
+                    
                   }
                 </td>
                 <td></td>

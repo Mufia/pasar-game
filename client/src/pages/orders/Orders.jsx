@@ -93,7 +93,7 @@ const Orders = () => {
                       {
                         order.isCompleted?
                         <span>Pesanan Selesai</span>
-                        : order.onProcces? 
+                        : order.onProcess? 
                         <button onClick={() => handleComplete(order._id)} >Selesaikan Pesanan</button>
                         : <span>Menunggu Konfirmasi</span>
                       }
@@ -104,7 +104,7 @@ const Orders = () => {
                       {
                         order.isCompleted?
                         <span>Pesanan Selesai</span>
-                        : order.onProcces? 
+                        : order.onProcess? 
                         <span>Sedang Proses</span>
                         : <button onClick={() => handleConfirm(order._id)}>Konfirmasi</button>
                       }

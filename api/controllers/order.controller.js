@@ -59,7 +59,7 @@ export const confirmOrder = async (req, res, next) => {
       return next(createError(403, "Hanya Seller yang bisa konfirmasi order"));
     }
     const confirmOrder =  await Order.findByIdAndUpdate(req.params.id,
-      { onProcces : true }, {new : true}
+      { onProcess : true }, {new : true}
       )
       res.status(200).send("order updated");
     
@@ -77,9 +77,27 @@ export const completeOrder = async (req, res, next) => {
       return next(createError(403, "Hanya buyer yang bisa konfirmasi order"));
     }
     const confirmOrder =  await Order.findByIdAndUpdate(req.params.id,
-      { onProcces : false , isCompleted : true}, {new : true}
+      { onProcess : false , isCompleted : true}, {new : true}
       )
       res.status(200).send("order completed");
+    
+  } catch (err) {
+    next(err)
+    
+  }
+  
+};
+
+export const cancelOrder = async (req, res, next) => {
+  
+  try { 
+    if (req.isAdmin !== true ) {
+      return next(createError(403, "Hanya Admin yang bisa membatalkan Order"));
+    }
+    const confirmOrder =  await Order.findByIdAndUpdate(req.params.id,
+      { onProcess : false , isCanceled : true}, {new : true}
+      )
+      res.status(200).send("order canceled");
     
   } catch (err) {
     next(err)

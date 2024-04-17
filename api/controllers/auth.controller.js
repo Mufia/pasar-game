@@ -21,11 +21,11 @@ export const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
 
-    if (!user) return next(createError(404, "User not found!"));
+    if (!user) return next(createError(404, "Username atau Password Salah"));
 
     const isCorrect = bcrypt.compareSync(req.body.password, user.password);
     if (!isCorrect)
-      return next(createError(400, "Wrong password or username!"));
+      return next(createError(400, "Username atau Password Salah"));
 
     const token = jwt.sign(
       {

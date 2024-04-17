@@ -33,7 +33,7 @@ const OrderSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    onProcces: {
+    onProcess: {
       type: Boolean,
       default: false,
     },

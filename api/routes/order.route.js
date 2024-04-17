@@ -5,7 +5,8 @@ import { getOrders,
         getAllOrders, 
         confirmOrder, 
         completeOrder, 
-        getOrder
+        getOrder,
+        cancelOrder
         } from "../controllers/order.controller.js";
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.get("/", verifyToken, getOrders);
 router.get("/admin",verifyToken, getAllOrders )
 router.put("/confirm/:id", verifyToken, confirmOrder)
 router.put("/complete/:id", verifyToken, completeOrder)
+router.put("/cancel/:id", verifyToken, cancelOrder)
 router.get("/single/:orderId", verifyToken, getOrder)
 
 
