@@ -78,7 +78,7 @@ const Add = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate(state);
-    alert ("Iklan Telah Ditambahkan")
+    window.alert ("Iklan Telah Ditambahkan")
     //navigate("/myposts")
   };
 

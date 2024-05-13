@@ -40,9 +40,6 @@ function Post() {
   });
 
 
-
-  const message = (`Halo, saya tertarik dengan akun ${data?.title} yang anda tawarkan di Pasar Game`);
-
   console.log(data)
   const postId = data?._id;
   console.log(postId)
@@ -55,7 +52,7 @@ function Post() {
 
   const handleOrder = async () => {
     try {
-      const res = await newRequest.get(`/orders/single/${encodeURIComponent(orderId)}`)
+      const res = await newRequest.get(`/orders/single/${orderId}`)
       navigate(`/orders`)
     } catch (err) {
       if (err.response.status === 404) {
