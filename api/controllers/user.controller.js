@@ -21,8 +21,8 @@ export const getUsers = async (req, res, next) => {
     const user = await User.find({
       isAdmin : false,
     }
-  );
-
+  ).select("-password")
+  
   res.status(200).send(user)
 };
 
