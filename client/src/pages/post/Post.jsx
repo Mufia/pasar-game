@@ -126,7 +126,7 @@ function Post() {
                       <p>Silahkan login dengan akun user untuk menghubugni penjual</p> 
                       : <div className="button">
                         {/*<WaButton phoneNumber={dataUser.phone} message={message}/>*/}
-                        <button onClick={handleChat}>Chat</button>
+                        {/*<button onClick={handleChat}>Chat</button>*/}
                         <button onClick={handleOrder} >Pesan Sekarang</button>
                         </div>
                          
