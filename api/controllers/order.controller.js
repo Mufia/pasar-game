@@ -11,7 +11,7 @@ export const createOrder = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.postId);
 
-    const newOrder = new Order({
+    const newOrder = new Order({  
       postId: post._id,
       img: post.cover,
       title: post.title,
