@@ -4,8 +4,6 @@ import "./MmCard.scss"
 import WaButton from '../waButton/WaButton';
 
 function MmCard ({midman}) {
-
-
   const message = "Halo, Saya ingin menggunakan Jasa MIddleman Untuk bertransaksi di Pasar Game"
 
   return (
