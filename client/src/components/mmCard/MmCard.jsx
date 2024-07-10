@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import "./Mmcard.scss"
+import "./MmCard.scss"
 import WaButton from '../waButton/WaButton';
 
 function MmCard ({midman}) {
