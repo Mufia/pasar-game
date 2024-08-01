@@ -50,8 +50,8 @@ function Home() {
   return (
     <div className="home">
       <Featured />
-      <h1>Popular Games</h1>
-      {
+      {/*<h1>Popular Games</h1>*/}
+      {/*
         loading ? (
           <h1>Loading....</h1>
         ) : (
@@ -61,7 +61,7 @@ function Home() {
             ))}
           </Slide>
         )
-      }
+      */}
       
       <h1>Semua Game</h1>
       {
