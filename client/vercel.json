@@ -1,5 +1,22 @@
 {
+  "builds": [
+    {
+      "src": "src/index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "src/main.jsx",
+      "use": "@vercel/static"
+    }
+  ],
   "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
