@@ -24,7 +24,9 @@ const connect = async () => {
   }
 };
 
-app.use(cors({ origin: "*", credentials: true }));
+
+
+app.use(cors({ origin: "https://client-sigma-three.vercel.app", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -42,7 +44,7 @@ app.use((err, req, res, next) => {
 
   return res.status(errorStatus).send(errorMessage);
 });
-
+app.get("/", (req, res) => res.send("pasar game"));
 app.listen(8800, () => {
   connect();
   console.log("Backend server is running!");
