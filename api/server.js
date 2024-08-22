@@ -12,6 +12,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 const app = express();
+const PORT = 8800
 dotenv.config();
 mongoose.set("strictQuery", true);
 
@@ -26,7 +27,7 @@ const connect = async () => {
 
 
 
-app.use(cors({ origin: "https://client-sigma-three.vercel.app", credentials: true }));
+app.use(cors({ origin: "https://pasar-game-client.vercel.app", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -45,7 +46,7 @@ app.use((err, req, res, next) => {
   return res.status(errorStatus).send(errorMessage);
 });
 app.get("/", (req, res) => res.send("pasar game"));
-app.listen(8800, () => {
+app.listen(PORT, () => {
   connect();
-  console.log("Backend server is running!");
+  console.log(`✅ Server is running on port ${PORT}`);
 });
