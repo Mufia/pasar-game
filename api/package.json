@@ -8,6 +8,9 @@
     "start": "node index.js",
     "postinstall": "npm rebuild bcrypt --build-from-source"
   },
+  "engines": {
+    "node": "18.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
