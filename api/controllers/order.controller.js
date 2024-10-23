@@ -71,8 +71,8 @@ export const confirmOrder = async (req, res, next) => {
 
 export const completeOrder = async (req, res, next) => {
   
-  try {
-    if (req.isSeller === true ) {
+  try {  
+    if (req.isSeller === true ) { 
       return next(createError(403, "Hanya buyer yang bisa konfirmasi order"));
     }
     const confirmOrder =  await Order.findByIdAndUpdate(req.params.id,

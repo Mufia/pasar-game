@@ -66,7 +66,6 @@ export const getPosts = async (req, res, next) => {
 export const getAllPosts = async (req, res, next) => {
   const posts = await Post.find({})
   .populate ("userId", "--password")
-  
   res.status(200).send(posts);
 }
 
