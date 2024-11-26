@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "postinstall": "npm rebuild bcrypt --build-from-source"
+    "vercel-build" : "echo hello"
   },
   "engines": {
     "node": "18.x"
