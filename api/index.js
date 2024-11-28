@@ -14,6 +14,7 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 8800
 dotenv.config();
+
 mongoose.set("strictQuery", true);
 
 const connect = async () => {
@@ -56,6 +57,7 @@ app.use((err, req, res, next) => {
 
   return res.status(errorStatus).send(errorMessage);
 });
+
 app.get("/", (req, res) => res.send("pasar game"));
 
 
@@ -73,4 +75,4 @@ const start = () => {
 
 start();
 
-module.exports = app;
+export default app;
