@@ -3,10 +3,11 @@ import "./Home.scss";
 import Featured from "../../components/featured/Featured";
 import Slide from "../../components/slide/Slide";
 import CatCard from "../../components/catCard/CatCard";
+import Slick from "../../components/slick-slide/slick";
 import GameCard from "../../components/gameCard/GameCard";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-
+import Carousel from "../../components/slickex/slickex"
 
 
 function Home() {
@@ -50,8 +51,19 @@ function Home() {
   return (
     <div className="home">
       <Featured />
-      {/*<h1>Popular Games</h1>*/}
+      <h1>Popular Games</h1>
       {/*
+        loading ? (
+          <h1>Loading</h1>
+        ) : (
+          <Slick >
+            {popularGames.map((p) => (
+            <CatCard key={p._id} popularGames={p} />
+            ))}
+          </Slick>
+        )
+      */}  
+      {
         loading ? (
           <h1>Loading....</h1>
         ) : (
@@ -61,7 +73,7 @@ function Home() {
             ))}
           </Slide>
         )
-      */}
+      }
       
       <h1>Semua Game</h1>
       {

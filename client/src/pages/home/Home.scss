@@ -8,6 +8,14 @@
     margin-bottom: 0px;
   }
 
+  .popular{
+    display: flex;
+    flex-direction: row;
+    width: 1400px;
+    margin: auto;
+    padding-top: 20px;
+  }
+
   .slideBox{
     padding-top: 20px;
     display: flex;

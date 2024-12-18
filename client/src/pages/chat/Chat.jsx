@@ -20,9 +20,9 @@ const Chat = () => {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  useEffect (() => {
+  /*useEffect (() => {
     setSocket(io("ws://localhost:8900"))
-  },[])
+  },[])*/
 
 
   useEffect(() => {
