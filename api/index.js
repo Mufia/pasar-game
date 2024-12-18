@@ -28,7 +28,7 @@ const connect = async () => {
   }
 };
 
-const allowedOrigins = ['https://pasar-game-client.vercel.app', 'https://pasar-game.vercel.app', 'http://localhost:3000','http://localhost:5173',];
+const allowedOrigins = ['https://pasar-game-client.vercel.app', 'https://pasar-game.vercel.app', 'http://localhost:3000','http://localhost:5173', 'https://pasargame.store', ];
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
