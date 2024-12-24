@@ -43,7 +43,7 @@ const AdminOrders = () => {
 
   const handleCancel = (id) => {
     cancelMutation.mutate(id);
-    window.location.reload();
+    //window.location.reload();
   };
   
   const handleGroupchat = async (orderId) => {

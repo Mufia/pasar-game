@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Home.scss";
 import Featured from "../../components/featured/Featured";
 import Slide from "../../components/slide/Slide";
-import CatCard from "../../components/catCard/CatCard";
 import Slick from "../../components/slick-slide/slick";
+import CatCard from "../../components/catCard/CatCard";
 import GameCard from "../../components/gameCard/GameCard";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import Carousel from "../../components/slickex/slickex"
+
 
 
 function Home() {
@@ -43,33 +43,22 @@ function Home() {
     getPopularGames();
   }, []);
 
-  if (currentUser?.isAdmin) {
+  /*if (currentUser?.isAdmin) {
     console.log(games)
     console.log(popularGames)
-  }
+  }*/
 
   return (
     <div className="home">
       <Featured />
-      <h1>Popular Games</h1>
-      {/*
-        loading ? (
-          <h1>Loading</h1>
-        ) : (
-          <Slick >
-            {popularGames.map((p) => (
-            <CatCard key={p._id} popularGames={p} />
-            ))}
-          </Slick>
-        )
-      */}  
+      {<h1>Popular Games</h1>}
       {
         loading ? (
           <h1>Loading....</h1>
         ) : (
           <Slide slidesToShow={5} arrowsScroll={5}>
             {popularGames.map((p) => (
-            <CatCard key={p.id} popularGames={p} />
+            <CatCard key={p._id} popularGames={p} />
             ))}
           </Slide>
         )
