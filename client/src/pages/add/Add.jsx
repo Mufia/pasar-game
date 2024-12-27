@@ -16,6 +16,8 @@ const Add = () => {
 
   const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
 
+  const seller = currentUser?.isSeller
+
   const handleChange = (e) => {
     dispatch({
       type: "CHANGE_INPUT",
@@ -86,7 +88,8 @@ const Add = () => {
 
   return (
     <div className="add">
-      <div className="container">
+      { seller 
+      ? <div className="container">
         <h1>Tambah Iklan Baru</h1>
         <div className="sections">
           <div className="info">
@@ -138,8 +141,10 @@ const Add = () => {
             <input type="number" placeholder="Rp" onChange={handleChange} name="price" />
             <button onClick={handleSubmit}>Buat Iklan</button>
           </div>
-        </div>
+        </div> 
       </div>
+      : <h1>hanya seller yang dapat menambahkan iklan </h1>
+      }
     </div>
   );
 };

@@ -9,7 +9,7 @@ export const register = async (req, res, next) => {
       $or: [{ username: req.body.username }, { email: req.body.email }],
     });
     if (existingUser) {
-      return next(createError(400, "Username or email is already registered."));
+      return next(createError(400, "Username atau email telah digunakan."));
     }
     const hash = bcrypt.hashSync(req.body.password, 5);
     const newUser = new User({

@@ -36,7 +36,7 @@ function Featured() {
           </div>
         </div>
         <div className="right">
-          <img src="https://upload-os-bbs.hoyolab.com/upload/2020/01/24/1093585/80dc253249450a3ae610205242a0ac0f_1844027884249063044.png?x-oss-process=image/auto-orient,0/interlace,1/format,png" alt="img"/>
+          <img src="https://upload-os-bbs.hoyolab.com/upload/2020/01/24/1093585/80dc253249450a3ae610205242a0ac0f_1844027884249063044.png?x-oss-process=image/auto-orient,0/interlace,1/format,png" alt="img" className="image"/>
         </div>
       </div>
     </div>
