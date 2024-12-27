@@ -15,6 +15,8 @@ function Register() {
     isSeller: false,
     desc: "",
   });
+  const [message, setMessage] = useState("");
+  const [messageColor, setMessageColor] = useState("");
 
   const navigate = useNavigate();
 
@@ -44,9 +46,13 @@ function Register() {
         ...user,
         img: url,
       });
-      navigate("/login")
-    } catch (err) {
-      console.log(err);
+      setMessage(response.data);
+      setMessageColor("green");
+      //navigate("/login")
+    } catch (error) {
+      setMessage(error.response?.data || "An error occurred.");
+      setMessageColor("red");
+      console.log(error);
     }
   };
   return (
@@ -73,6 +79,7 @@ function Register() {
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
           
           <button type="submit">Daftar</button>
+          {message && <p style={{ color: messageColor }}>{message}</p>}
         </div>
         <div className="right">
           <h1>Saya Ingin Menjadi Penjual</h1>
@@ -93,6 +100,7 @@ function Register() {
         </div>
       </form>
     </div>
+    
   );
 }
 

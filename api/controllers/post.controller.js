@@ -2,7 +2,7 @@ import Post from "../models/post.model.js";
 import createError from "../utils/createError.js";
 
 export const createPost = async (req, res, next) => {
-  if (!req.isSeller)
+  if (req.isSeller !== true)
     return next(createError(403, "Only sellers can create a Post!"));
   
 
