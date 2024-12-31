@@ -23,6 +23,10 @@ export const deletePost = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id);
 
+    if (!post) {
+      return next(createError(404, "Post not found"));
+    }
+
     if (post.userId.toHexString() !== req.userId)
       return next(createError(403, "You can delete only your post!"));
 
