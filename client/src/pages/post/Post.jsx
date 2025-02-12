@@ -121,13 +121,13 @@ function Post() {
                       isSold ? 
                       <h3>Akun ini telah Terjual</h3> :
                       !currentUser? 
-                      <p>Silahkan login untuk menghubungi penjual</p> 
+                      <p>Silahkan login untuk melanjutkan</p> 
                       : currentUser.isSeller? 
-                      <p>Silahkan login dengan akun user untuk menghubugni penjual</p> 
+                      <p>Silahkan login dengan akun user untuk melanjutkan</p> 
                       : <div className="button">
                         {/*<WaButton phoneNumber={dataUser.phone} message={message}/>*/}
                         {/*<button onClick={handleChat}>Chat</button>*/}
-                        <button onClick={handleOrder} >Pesan Sekarang</button>
+                        <button onClick={handleOrder} >Pesan Sekarang</button>  
                         </div>
                          
                     }

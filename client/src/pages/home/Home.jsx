@@ -74,6 +74,7 @@ function Home() {
             <GameCard games = {g} key={g._id}/>
           ))}
         </div>
+        
         )
       }
     </div>

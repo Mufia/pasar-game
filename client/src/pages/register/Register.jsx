@@ -52,7 +52,7 @@ function Register() {
     } catch (error) {
       setMessage(error.response?.data || "An error occurred.");
       setMessageColor("red");
-      console.log(error);
+      console.log(error); 
     }
   };
   return (
